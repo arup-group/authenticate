@@ -1,4 +1,3 @@
-import { Component, Children } from 'react'
 import PropTypes from 'prop-types'
 import Auth0Lock from 'auth0-lock'
 import authType from './authType'
@@ -10,7 +9,7 @@ const ACCESS_TOKEN_SUFFIX = '-access-token'
 const AUTHO_ALG = process.env.AUTH_ALG || 'RS256'
 const AUTH_NAMESPACE = 'http://authz.arup.digital/authorization'
 
-function AuthProviderSimple(info, redirect, fetchUrl) {
+function AuthProviderSimple(info, redirect=true) {
 
   this.event = new EventEmitter();
 
@@ -20,7 +19,7 @@ function AuthProviderSimple(info, redirect, fetchUrl) {
 
   this.lock = new Auth0Lock(info.clientId, info.domain, {
     auth: {
-      redirect: true,
+      redirect: redirect,
       redirectUrl: `${info.redirectUrl}` || `${window.location.origin}`,
       responseType: 'token id_token',
       autoParseHash: true,
@@ -73,7 +72,7 @@ function AuthProviderSimple(info, redirect, fetchUrl) {
     // leaving this at 'parsed' to help anyone that is relying on it..
     this.parsed = true
 
-    this.event.emit('token_set')
+    //this.event.emit('token_set')
   }
 
   this.authError = function(error){

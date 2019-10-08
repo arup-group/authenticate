@@ -1,5 +1,5 @@
 export { getToken, default as AuthProviderReact } from './AuthProvider'
-export { default as AuthProviderSimple } from './AuthProviderSimple'
+export { default as AuthProviderService } from './AuthProviderService'
 export { default as withAuth } from './withAuth'
 
 import AuthProvider, { getAuth } from './AuthProviderSimple'
